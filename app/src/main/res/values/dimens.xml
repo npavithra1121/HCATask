@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="margin_space1">4dp</dimen>
+    <dimen name="margin_space2">8dp</dimen>
+    <dimen name="margin_space3">12dp</dimen>
+    <dimen name="margin_space4">16dp</dimen>
+    <dimen name="margin_space5">20dp</dimen>
+
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">14dp</dimen>
+    <dimen name="text_large">16dp</dimen>
+
+    <dimen name="image_size">55dp</dimen>
+
+</resources>

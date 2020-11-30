@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HcaTask</string>
+    <string name="answers">Answers</string>
+    <string name="questions">Questions</string>
+    <string name="question_text">Q: %s</string>
+    <string name="answer_text">A: %s</string>
+    <string name="answer_count">Answers %s</string>
+    <string name="score_count">Score %s</string>
+    <string name="getting_error">Getting Error</string>
+    <string name="check_your_network">Please check your network connection</string>
+</resources>
