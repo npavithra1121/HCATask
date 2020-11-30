@@ -15,7 +15,7 @@ data class AnswerItem(@SerializedName("owner")
                       @SerializedName("creation_date")
                       val creationDate: Int = 0,
                       @SerializedName("body")
-                      val body: String = "",
+                      var body: String = "",
                       @SerializedName("answer_id")
                       val answerId: Int = 0,
                       @SerializedName("question_id")

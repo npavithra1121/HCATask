@@ -40,6 +40,8 @@ class AnswersListAdapter @Inject constructor(): ListAdapter<AnswerItem, AnswersL
         )
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.inflateAnswersBinding.item =getItem(position)
+        holder.inflateAnswersBinding.item =getItem(position).also {
+            it.body = it.body.replace("<p>","").replace("</p>","")
+        }
     }
 }
