@@ -10,11 +10,11 @@ import com.hca.hcatask.R
 import com.hca.hcatask.databinding.RvItemQuestionsBinding
 import com.hca.hcatask.model.QuestionItem
 
-class QuestionsListAdapter constructor(private val block: (data : QuestionItem)->Unit) :
-    PagingDataAdapter<QuestionItem, QuestionsListAdapter.ImageViewHolder>(DataDifferntiator) {
+class QuestionsListAdapter constructor(private val block: (data: QuestionItem) -> Unit) :
+        PagingDataAdapter<QuestionItem, QuestionsListAdapter.ImageViewHolder>(DataDifferntiator) {
 
     class ImageViewHolder(var inflateQuestionsBinding: RvItemQuestionsBinding) :
-        RecyclerView.ViewHolder(inflateQuestionsBinding.root)
+            RecyclerView.ViewHolder(inflateQuestionsBinding.root)
 
     object DataDifferntiator : DiffUtil.ItemCallback<QuestionItem>() {
 
@@ -36,13 +36,13 @@ class QuestionsListAdapter constructor(private val block: (data : QuestionItem)-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder =
-        ImageViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.rv_item_questions,
-                parent,
-                false
+            ImageViewHolder(
+                    DataBindingUtil.inflate(
+                            LayoutInflater.from(parent.context),
+                            R.layout.rv_item_questions,
+                            parent,
+                            false
+                    )
             )
-        )
 
 }

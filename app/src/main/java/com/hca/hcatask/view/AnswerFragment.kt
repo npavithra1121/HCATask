@@ -20,16 +20,17 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AnswerFragment @Inject constructor(): BaseFragment() {
+class AnswerFragment @Inject constructor() : BaseFragment() {
     @Inject
     lateinit var mItemAdapter: AnswersListAdapter
+
     @Inject
     lateinit var answerViewModel: AnswerViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
@@ -53,7 +54,7 @@ class AnswerFragment @Inject constructor(): BaseFragment() {
     private fun observeInvoicesList() {
         answerViewModel.getAnswerLiveData().observe(viewLifecycleOwner, Observer {
             it?.let {
-                when(it){
+                when (it) {
                     is NetworkStatus.Success -> {
                         showHideLoading(false)
                         it.data.let {
@@ -66,25 +67,26 @@ class AnswerFragment @Inject constructor(): BaseFragment() {
                     is NetworkStatus.Loading -> showHideLoading(it.status)
                     is NetworkStatus.CustomSignal -> {
                         showHideLoading(false)
-                        showToast(getString(R.string.check_your_network))
+                        showToast(it.message)
                     }
 
                     is NetworkStatus.Error -> {
                         showHideLoading(false)
-                    showToast(getString(R.string.getting_error))
+                        showToast(it.error)
                     }
 
-                    else -> {}
+                    else -> {
+                    }
                 }
             }
 
         })
     }
 
-    private fun showHideLoading(show : Boolean){
-        if (show){
+    private fun showHideLoading(show: Boolean) {
+        if (show) {
             progress_bar?.show()
-        }else{
+        } else {
             progress_bar?.hide()
         }
     }
@@ -94,16 +96,16 @@ class AnswerFragment @Inject constructor(): BaseFragment() {
         const val KEY_QUESTION: String = "key_question"
         fun getInstance(supportFragment: FragmentManager?, layout_inflate: Int, questionId: Int, question: String) {
             val args = Bundle()
-            args.putInt(KEY_QID,questionId)
-            args.putString(KEY_QUESTION,question)
+            args.putInt(KEY_QID, questionId)
+            args.putString(KEY_QUESTION, question)
             val fragmentInflate = AnswerFragment()
             fragmentInflate.arguments = args
             supportFragment?.beginTransaction()
-                ?.replace(
-                    layout_inflate, fragmentInflate,
-                    AnswerFragment::class.java.simpleName
-                )?.addToBackStack(AnswerFragment::class.java.simpleName)
-                ?.commit()
+                    ?.replace(
+                            layout_inflate, fragmentInflate,
+                            AnswerFragment::class.java.simpleName
+                    )?.addToBackStack(AnswerFragment::class.java.simpleName)
+                    ?.commit()
         }
     }
 }

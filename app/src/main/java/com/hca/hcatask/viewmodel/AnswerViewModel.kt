@@ -6,7 +6,9 @@ import com.hca.hcatask.base.BaseViewModel
 import com.hca.hcatask.domain.ApiHelper
 import com.hca.hcatask.domain.NetworkStatus
 import androidx.lifecycle.viewModelScope
+import com.hca.hcatask.R
 import com.hca.hcatask.model.AnswerResponse
+import com.hca.hcatask.utils.NoInternetException
 import com.hca.hcatask.utils.print
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.launch
@@ -27,15 +29,18 @@ class AnswerViewModel @Inject constructor(
             try {
                 repository.getAnswersData(question_id).let {
                     it.let {
-                        "success error $it ".print()
+                        "success $it ".print()
                         answersLiveData.postValue(NetworkStatus.Loading(false))
                         answersLiveData.postValue(NetworkStatus.Success(it))
                     }
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
+            } catch (e: NoInternetException) {
                 "catch error $e ".print()
-                answersLiveData.postValue(NetworkStatus.Loading(false))
+                answersLiveData.postValue(NetworkStatus.CustomSignal("Please check your network connection"))
+            } catch (exception: Exception) {
+                "catch error $exception ".print()
+                answersLiveData.postValue(NetworkStatus.Error(exception.message.toString()))
+
             }
         }
     }

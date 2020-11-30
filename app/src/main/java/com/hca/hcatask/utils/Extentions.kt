@@ -7,6 +7,9 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.hca.hcatask.R
+import java.io.IOException
+
+class NoInternetException(message: String) : IOException(message)
 
 fun View.show() {
     this.visibility = View.VISIBLE
@@ -19,13 +22,14 @@ fun View.hide() {
 fun View.remove() {
     this.visibility = View.GONE
 }
+
 fun Any?.print() {
     Log.v("hca_print", " $this")
 }
 
 var options: RequestOptions = RequestOptions()
-    .placeholder(R.drawable.ic_baseline_account_box)
-    .error(R.drawable.ic_baseline_error_24)
+        .placeholder(R.drawable.ic_baseline_account_box)
+        .error(R.drawable.ic_baseline_error_24)
 
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String) = Glide.with(view.context).load(url).apply(options).into(view)

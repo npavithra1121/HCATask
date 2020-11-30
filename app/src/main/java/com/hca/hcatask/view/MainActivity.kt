@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
     private fun inflateFragment() {
         QuestionsFragment.getInstance(
                 supportFragment = supportFragmentManager,
-            layout = R.id.frame_container_user)
+                layout = R.id.frame_container_user)
     }
 
 }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hca.hcatask.R
 import com.hca.hcatask.base.BaseFragment
 import com.hca.hcatask.model.QuestionItem
+import com.hca.hcatask.utils.NoInternetException
 import com.hca.hcatask.utils.hide
 import com.hca.hcatask.utils.show
 import com.hca.hcatask.view.adapter.QuestionsListAdapter
@@ -78,7 +79,7 @@ class QuestionsFragment @Inject constructor() : BaseFragment() {
                     else -> null
                 }
                 errorState?.let {
-                    showToast(it.error.toString())
+                    showToast(it.error.toString().replace(NoInternetException::class.java.name, ""))
                 }
 
             }

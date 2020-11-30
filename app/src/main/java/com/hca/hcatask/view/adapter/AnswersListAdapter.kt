@@ -13,10 +13,10 @@ import dagger.hilt.android.scopes.FragmentScoped
 import javax.inject.Inject
 
 @FragmentScoped
-class AnswersListAdapter @Inject constructor(): ListAdapter<AnswerItem, AnswersListAdapter.ImageViewHolder>(DataDifferntiator) {
+class AnswersListAdapter @Inject constructor() : ListAdapter<AnswerItem, AnswersListAdapter.ImageViewHolder>(DataDifferntiator) {
 
     class ImageViewHolder(var inflateAnswersBinding: RvItemAnswerBinding) :
-        RecyclerView.ViewHolder(inflateAnswersBinding.root)
+            RecyclerView.ViewHolder(inflateAnswersBinding.root)
 
     object DataDifferntiator : DiffUtil.ItemCallback<AnswerItem>() {
         override fun areItemsTheSame(oldItem: AnswerItem, newItem: AnswerItem): Boolean {
@@ -30,18 +30,18 @@ class AnswersListAdapter @Inject constructor(): ListAdapter<AnswerItem, AnswersL
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder =
-        ImageViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.rv_item_answer,
-                parent,
-                false
+            ImageViewHolder(
+                    DataBindingUtil.inflate(
+                            LayoutInflater.from(parent.context),
+                            R.layout.rv_item_answer,
+                            parent,
+                            false
+                    )
             )
-        )
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        holder.inflateAnswersBinding.item =getItem(position).also {
-            it.body = it.body.replace("<p>","").replace("</p>","")
+        holder.inflateAnswersBinding.item = getItem(position).also {
+            it.body = it.body.replace("<p>", "").replace("</p>", "")
         }
     }
 }

@@ -11,8 +11,8 @@ interface ApiInterface {
 
     @GET("2.2/questions?order=asc&site=stackoverflow")
     suspend fun getQuestionsResults(
-        @Query("page") page: Int,
-        @Query("pagesize") perPage: Int
+            @Query("page") page: Int,
+            @Query("pagesize") perPage: Int
     ): QuestionResponse
 
     @GET("2.2/questions/{question_id}/answers?order=asc&sort=activity&site=stackoverflow&filter=withbody")

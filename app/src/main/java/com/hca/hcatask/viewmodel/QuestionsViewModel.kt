@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @ActivityRetainedScoped
 class QuestionsViewModel @Inject constructor(
-    private val repository: ApiHelper
+        private val repository: ApiHelper
 ) : BaseViewModel() {
 
     val listData = Pager(PagingConfig(pageSize = QUERY_PAGE_SIZE)) {
